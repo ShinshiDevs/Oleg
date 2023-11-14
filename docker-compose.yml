@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+    oleg:
+        restart: unless-stopped
+        build:
+            context: .
+        tty: true
+        networks:
+            - default
+        env_file:
+            - oleg/.env
+
+networks:
+    default:
