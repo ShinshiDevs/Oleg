@@ -51,7 +51,7 @@ ENGLISH_WELCOMES = [
     "{}, Is that you? I can't believe my eyes and ears!",
     "{}, it's been ages! YOU're always irresistible!",
     "Hello! Seeing your smile is a huge happiness for me today, {}!",
-    "Buddy! This is a twist! How can this be? Years go by, but you stay the same! Hello!",
+    "{}, This is a twist! How can this be? Years go by, but you stay the same! Hello!",
     "{}, Sup!",
     "{}, Yo!",
     "{}, Hello!",

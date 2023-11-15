@@ -27,7 +27,7 @@ from oleg.variables import (
     ENGLISH_ROLE_ID,
     JOIN_MEMBER_EMOJI_ID,
     RUSSIAN_WELCOMES,
-    ENGLISH_WELCOMES
+    ENGLISH_WELCOMES,
 )
 
 _log = getLogger(__name__)
@@ -52,9 +52,11 @@ async def on_connect(event: ShardConnectedEvent) -> None:
 
     resources = Resources(
         general_guild=await event.app.rest.fetch_guild(GENERAL_GUILD_ID),
-        join_emoji=str(await event.app.rest.fetch_emoji(emojis_pool_guild, JOIN_MEMBER_EMOJI_ID)),
+        join_emoji=str(
+            await event.app.rest.fetch_emoji(emojis_pool_guild, JOIN_MEMBER_EMOJI_ID)
+        ),
         russian_chat=await event.app.rest.fetch_channel(RUSSIAN_CHANNEL_ID),
-        english_chat=await event.app.rest.fetch_channel(ENGLISH_CHANNEL_ID)
+        english_chat=await event.app.rest.fetch_channel(ENGLISH_CHANNEL_ID),
     )
 
     resources.russian_role = resources.general_guild.get_role(RUSSIAN_ROLE_ID)
@@ -75,16 +77,22 @@ async def on_button_click(event: ComponentInteractionCreateEvent) -> None:
             resources.general_guild, member, resources.russian_role
         )
         await resources.russian_chat.send(
-            content=(f"{resources.join_emoji} " + choice(RUSSIAN_WELCOMES).format(member.mention)),
-            user_mentions=True
+            content=(
+                f"{resources.join_emoji} "
+                + choice(RUSSIAN_WELCOMES).format(member.mention)
+            ),
+            user_mentions=True,
         )
     if event.custom_id == "choice_en":
         await event.app.rest.add_role_to_member(
             resources.general_guild, member, resources.english_role
         )
         await resources.english_chat.send(
-            content=(f"{resources.join_emoji} " + choice(ENGLISH_WELCOMES).format(member.mention)),
-            user_mentions=True
+            content=(
+                f"{resources.join_emoji} "
+                + choice(ENGLISH_WELCOMES).format(member.mention)
+            ),
+            user_mentions=True,
         )
 
 
