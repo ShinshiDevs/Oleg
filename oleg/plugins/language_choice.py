@@ -71,7 +71,9 @@ class Resources:
 @plugin.include
 @base_event
 async def on_connect(event: ShardConnectedEvent) -> None:
-    emojis_pool_guild: Final[Guild] = await event.app.rest.fetch_guild(EMOJI_POOL_GUILD_ID)
+    emojis_pool_guild: Final[Guild] = await event.app.rest.fetch_guild(
+        EMOJI_POOL_GUILD_ID
+    )
 
     resources = Resources(
         general_guild=await event.app.rest.fetch_guild(GENERAL_GUILD_ID),

@@ -39,13 +39,17 @@ base_bot: GatewayBot = base_bot
 
 
 async def update_en_channel(channel: PermissibleGuildChannel) -> None:
-    humanized_timedelta: str = precisedelta(format="%0.0f", value=(new_year - datetime.now()), minimum_unit="days")
+    humanized_timedelta: str = precisedelta(
+        format="%0.0f", value=(new_year - datetime.now()), minimum_unit="days"
+    )
     await channel.edit(name=f"🎄 {humanized_timedelta}")
 
 
 async def update_ru_channel(channel: PermissibleGuildChannel) -> None:
     activate("ru_RU")
-    humanized_timedelta: str = precisedelta(format="%0.0f", value=(new_year - datetime.now()), minimum_unit="days")
+    humanized_timedelta: str = precisedelta(
+        format="%0.0f", value=(new_year - datetime.now()), minimum_unit="days"
+    )
     await channel.edit(name=f"🎄 {humanized_timedelta}")
     deactivate()
 
@@ -53,7 +57,11 @@ async def update_ru_channel(channel: PermissibleGuildChannel) -> None:
 @plugin.include
 @loop(timedelta(hours=1))
 async def task() -> None:
-    en_channel: PermissibleGuildChannel = await base_bot.rest.fetch_channel(EN_NEW_YEAR_CHANNEL_ID)
-    ru_channel: PermissibleGuildChannel = await base_bot.rest.fetch_channel(RU_NEW_YEAR_CHANNEL_ID)
+    en_channel: PermissibleGuildChannel = await base_bot.rest.fetch_channel(
+        EN_NEW_YEAR_CHANNEL_ID
+    )
+    ru_channel: PermissibleGuildChannel = await base_bot.rest.fetch_channel(
+        RU_NEW_YEAR_CHANNEL_ID
+    )
     await update_en_channel(en_channel)
     await update_ru_channel(ru_channel)

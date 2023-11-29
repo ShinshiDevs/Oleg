@@ -32,7 +32,7 @@ from hikari.impl.config import CacheSettings, CacheComponents
 from crescent.client import Client
 from miru.bootstrap import install
 
-__all__: Sequence[str] = ('base_bot')
+__all__: Sequence[str] = "base_bot"
 load_dotenv("../.env", override=True)
 
 if __name__ == "__main__":
@@ -51,7 +51,7 @@ if __name__ == "__main__":
             ),
             max_dm_channel_ids=0,
             max_messages=100,
-        )
+        ),
     )
 
     install(base_bot)
