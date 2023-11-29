@@ -1,12 +1,37 @@
-EMOJI_POOL_GUILD_ID = 1116299975870136330
-GENERAL_GUILD_ID = 1130589089658306672
-RUSSIAN_ROLE_ID = 1174034977504108675
-ENGLISH_ROLE_ID = 1174035039936335982
-RUSSIAN_CHANNEL_ID = 1130594736944726106
-ENGLISH_CHANNEL_ID = 1174058375521239070
-JOIN_MEMBER_EMOJI_ID = 1174228725857005629
+# MIT License
+#
+# Copyright (c) 2023-Present Shinshi Developers Team
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+from typing import Final, Sequence
 
-RUSSIAN_WELCOMES = [
+EMOJI_POOL_GUILD_ID: Final[int] = 1116299975870136330
+GENERAL_GUILD_ID: Final[int] = 1130589089658306672
+RUSSIAN_ROLE_ID: Final[int] = 1174034977504108675
+ENGLISH_ROLE_ID: Final[int] = 1174035039936335982
+RUSSIAN_CHANNEL_ID: Final[int] = 1130594736944726106
+ENGLISH_CHANNEL_ID: Final[int] = 1174058375521239070
+JOIN_MEMBER_EMOJI_ID: Final[int] = 1174228725857005629
+RU_NEW_YEAR_CHANNEL_ID: Final[int] = 1179349546808115200  # new year
+EN_NEW_YEAR_CHANNEL_ID: Final[int] = 1179349745781723237  # new year
+
+RUSSIAN_WELCOMES: Sequence[str] = [
     "{}, Добро пожаловать!",
     "{}, Теперь наш друг!",
     "{}, Надеюсь ты к нам не без пиццы.",
@@ -32,7 +57,7 @@ RUSSIAN_WELCOMES = [
     "{}, Бонжур!",
 ]
 
-ENGLISH_WELCOMES = [
+ENGLISH_WELCOMES: Sequence[str] = [
     "Welcome, {}!",
     "Welcome, {}! Now you're our friend!",
     "{}, I hope you didn't come here without pizza.",

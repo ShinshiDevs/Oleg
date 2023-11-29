@@ -9,7 +9,7 @@ services:
         networks:
             - default
         env_file:
-            - oleg/.env
+            - .env
 
 networks:
     default:

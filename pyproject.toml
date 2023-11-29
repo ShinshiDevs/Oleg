@@ -1,16 +1,19 @@
 [tool.poetry]
-name = "oleg"
-version = "0.1.0"
-description = ""
-authors = ["stefanlight <steffmukhin@gmail.com>"]
-readme = "README.md"
+name        = "Oleg"
+version     = "0.1.1"
+description = "A service bot to provide the server with all the features it needs."
+authors     = ["stefanlight <@stefanlight>"]
 
 [tool.poetry.dependencies]
-python = ">=3.11,<3.12"
-hikari = "^2.0.0.dev121"
+python          = ">=3.11,<3.12"
+
+hikari          = "^2.0.0.dev121"
 hikari-crescent = "^0.6.4"
-hikari-miru = "^3.2.2"
-python-dotenv = "^1.0.0"
+hikari-miru     = "^3.2.2"
+
+python-dotenv   = "^1.0.0"
+humanize        = "^4.9.0"
+orjson          = "^3.9.10"
 
 
 [tool.poetry.group.dev.dependencies]

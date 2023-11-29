@@ -1,20 +1,43 @@
+# MIT License
+#
+# Copyright (c) 2023-Present Shinshi Developers Team
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
 from dataclasses import dataclass
-from logging import getLogger
+from logging import Logger, getLogger
 from random import choice
+from typing import Final
 
-from crescent import Plugin, event as base_event, hook, command, Context
-from hikari import (
-    Guild,
-    Role,
-    Member,
-    GuildTextChannel,
-    TextableGuildChannel,
-    GatewayBot,
-    ButtonStyle,
-    PartialChannel,
-)
-from hikari.events import ShardConnectedEvent
-from miru import View, Button
+from hikari.components import ButtonStyle
+from hikari.guilds import Guild, Role, Member
+from hikari.impl.gateway_bot import GatewayBot
+from hikari.events.shard_events import ShardConnectedEvent
+from hikari.channels import GuildTextChannel, TextableGuildChannel, PartialChannel
+
+from crescent.plugin import Plugin
+from crescent.events import event as base_event
+from crescent.commands.hooks import hook
+from crescent.commands.decorators import command
+from crescent.context.context import Context
+
+from miru.view import View
+from miru.button import Button
 from miru.events import ComponentInteractionCreateEvent
 
 from oleg.hooks import is_owner
@@ -30,7 +53,7 @@ from oleg.variables import (
     ENGLISH_WELCOMES,
 )
 
-_log = getLogger(__name__)
+_log: Logger = getLogger(__name__)
 plugin: Plugin = Plugin[GatewayBot, None]()
 setattr(plugin, "resources", None)
 
@@ -48,7 +71,7 @@ class Resources:
 @plugin.include
 @base_event
 async def on_connect(event: ShardConnectedEvent) -> None:
-    emojis_pool_guild = await event.app.rest.fetch_guild(EMOJI_POOL_GUILD_ID)
+    emojis_pool_guild: Final[Guild] = await event.app.rest.fetch_guild(EMOJI_POOL_GUILD_ID)
 
     resources = Resources(
         general_guild=await event.app.rest.fetch_guild(GENERAL_GUILD_ID),
