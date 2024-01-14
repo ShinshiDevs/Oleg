@@ -1,0 +1,25 @@
+{
+    "guilds": {
+        "main": 1130589089658306672
+    },
+    "roles": {
+        "languages": {
+            "russian": 1174034977504108675,
+            "english": 1174035039936335982
+        }
+    },
+    "welcomer": {
+        "channels": {
+            "russian": 1130594736944726106,
+            "english": 1174058375521239070
+        },
+        "messages": {
+            "russian": "{emoji} Рады приветствовать Вас на **Shinshi Hub**, {member}!\nРекомендуем ознакомиться со всей представленной информацией в <#1174039703402594404> и <#1155618400731664445>.",
+            "english": "{emoji} We're glad to welcome you to **Shinshi Hub**, {member}!\nWe recommend that you familiarise yourself with all the information provided in <#1174058307665797210> and <#1174058339953553449>."
+        }
+    },
+    "emojis": {
+        "join": 1196011455959535716,
+        "logo": 1196011457142341663
+    }
+}

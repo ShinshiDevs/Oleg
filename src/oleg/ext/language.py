@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2023-Present Shinshi Developers Team
+# Copyright (c) 2023-Present "Shinshi Developers Team"
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,26 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+from typing import Any
+
+from hikari.guilds import Member, Role, Guild
+
+from oleg.framework.bot import Bot
+
+
+class Language:
+    __cache: dict[str, dict[str, Any]] = {}
+
+    def __init__(self, bot: Bot, guild: Guild) -> None:
+        roles: dict[str, Role] = {
+            "RU": guild.get_role(bot.config["roles"]["languages"]["russian"]),
+            "EN": guild.get_role(bot.config["roles"]["languages"]["english"]),
+        }
+        self.__cache.update(roles=roles)
+
+    @classmethod
+    async def set(cls, member: Member, language: str) -> None:
+        language: str = language.upper()
+        if cls.__cache["roles"].get(language) is None:
+            raise ValueError(f"Language '{language}' is None")
+        await member.add_role(cls.__cache["roles"][language])

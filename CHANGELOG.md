@@ -1,3 +1,9 @@
+# Version 0.1.2
++ Bot has been rewritten to a very similar base and structure as Shinshi, but without Dependency Injection due to complex implementation, so far.
++ Simplified getting and caching the right stuff, like language roles, channels and emoji to avoid using constats...
++ `about` slash command has been added.
++ Updated bot's design to Shinshi's new design. (really smart)
+
 # Version 0.1.1
 + Absolute imports.
 + Environment variables example.

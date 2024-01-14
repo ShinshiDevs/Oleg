@@ -19,30 +19,6 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-[tool.poetry]
-name            = "oleg"
-version         = "0.1.2"
-description     = "A service bot to provide the server with all the features it needs."
-authors         = ["stefanlight <steffmukhin@gmail.com>"]
-license         = "MIT License"
-readme          = "README.md"
-
-[tool.poetry.dependencies]
-python          = ">=3.12,<3.13"
-
-hikari          = "^2.0.0.dev122"
-hikari-miru     = "^3.4.0"
-hikari-crescent = "^0.6.6"
-
-cachetools      = "^5.3.2"
-orjson          = "^3.9.10"
-uvloop          = "^0.19.0"
-python-dotenv   = "^1.0.0"
-
-
-[tool.poetry.group.dev.dependencies]
-black           = "^23.12.1"
-
-[build-system]
-requires        = ["poetry-core"]
-build-backend   = "poetry.core.masonry.api"
+message_cache_size: int = 1_000
+dm_channel_cache_size: int = 0
+member_cache_size: int = 1_000

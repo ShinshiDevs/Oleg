@@ -1,12 +1,12 @@
 <p align="center">
-  <h1 align="center" style="color: #FFCE4F"><img src="https://cdn.discordapp.com/avatars/1174060990111948854/87148b86800e9dca85d0740a938120f5.webp" width="30" style="border-radius: 100px"> Oleg</h1>
+  <h1 align="center"><img src="./logo.png" width="30"> Oleg</h1>
   <p align="center">Service bot for <a href="https://dsc.gg/shinshi">Shinshi Hub</a>, a support server. A bit similar to Shinshi, but much weaker in structure and content, but also serves as a good template for your future bot.<p>
   <p align="center">
     <a href="https://github.com/ShinshiDevs/Oleg/blob/main/LICENSE.txt">
-      <img src="https://img.shields.io/badge/MIT%20License-yellow.svg" />
+      <img src="https://img.shields.io/badge/MIT%20License-white.svg" />
     </a>
     <a href="https://www.python.org/">
-    	<img src="https://img.shields.io/badge/Python%203.11.6-yellow.svg" />
+    	<img src="https://img.shields.io/badge/Python%203.12-white.svg" />
     </a>
     <a href="https://www.python.org/">
     	<img src="https://img.shields.io/badge/codestyle%20black-black.svg" />

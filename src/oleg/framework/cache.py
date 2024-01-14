@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2023-Present Shinshi Developers Team
+# Copyright (c) 2023-Present "Shinshi Developers Team"
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -19,29 +19,28 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-from typing import Sequence
-from os import getenv
+from logging import getLogger
+from typing import TYPE_CHECKING, cast
 
-from dotenv.main import load_dotenv
-
+from cachetools import LFUCache
+from hikari.guilds import Member
+from hikari.impl.cache import CacheImpl
+from hikari.impl.config import CacheComponents, CacheSettings
 from hikari.impl.gateway_bot import GatewayBot
-from hikari.intents import Intents
-from hikari.presences import Status
-from hikari.impl.config import CacheSettings, CacheComponents
 
-from crescent.client import Client
-from miru.bootstrap import install
+from oleg._caching import (
+    message_cache_size,
+    dm_channel_cache_size,
+    member_cache_size,
+)
 
-__all__: Sequence[str] = "base_bot"
-load_dotenv("../.env", override=True)
+if TYPE_CHECKING:
+    from logging import Logger
 
-if __name__ == "__main__":
-    base_bot: GatewayBot = GatewayBot(
-        token=getenv("OLEG_DISCORD_TOKEN"),
-        intents=Intents.ALL,
-        banner=None,
-        auto_chunk_members=False,
-        cache_settings=CacheSettings(
+
+class Cache(CacheImpl):
+    def __init__(self, app: GatewayBot) -> None:
+        settings = CacheSettings(
             components=(
                 CacheComponents.ME
                 | CacheComponents.GUILD_CHANNELS
@@ -49,26 +48,21 @@ if __name__ == "__main__":
                 | CacheComponents.GUILDS
                 | CacheComponents.ROLES
             ),
-            max_dm_channel_ids=0,
-            max_messages=100,
-        ),
-    )
-
-    install(base_bot)
-
-    client: Client = Client(
-        base_bot,
-        default_guild=getenv("OLEG_MAIN_GUILD"),
-    )
-    client.plugins.load_folder("oleg.plugins")
-
-    try:
-        base_bot.run(
-            status=Status.IDLE,
-            enable_signal_handlers=True,
-            shard_count=1,
-            check_for_updates=True,
-            propagate_interrupts=True,
+            max_messages=message_cache_size,
+            max_dm_channel_ids=dm_channel_cache_size,
         )
-    except KeyboardInterrupt:
-        exit(0)
+        super().__init__(app, settings=settings)
+        self.__members: LFUCache[tuple[int, int], Member | None] = LFUCache(
+            member_cache_size
+        )
+        self.__app: GatewayBot = cast(GatewayBot, app)
+        self.__logger: Logger = getLogger("cache")
+
+    def clear_safe(self) -> None:
+        self.__members.clear()
+        self.clear_messages()
+        self.clear_dm_channel_ids()
+
+    def clear(self) -> None:
+        self.clear_safe()
+        super().clear()
