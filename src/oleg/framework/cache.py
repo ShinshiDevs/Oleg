@@ -47,6 +47,7 @@ class Cache(CacheImpl):
                 | CacheComponents.GUILD_THREADS
                 | CacheComponents.GUILDS
                 | CacheComponents.ROLES
+                | CacheComponents.EMOJIS
             ),
             max_messages=message_cache_size,
             max_dm_channel_ids=dm_channel_cache_size,
