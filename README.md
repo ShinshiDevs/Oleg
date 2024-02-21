@@ -25,8 +25,8 @@
 Any contributors are welcome, but please respect these rules:
 - Clear commit messages.
 - Refactor the code before publishing with ruff.
-  > [!TIP]  
-  > `poetry init --dev-dependency` to install development packages.
+  
+  `poetry init --dev-dependency` to install development packages.
 - In the commit description, state as much as possible, so we understand what you want to do.
 
 Good luck! 🤝
