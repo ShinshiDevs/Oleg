@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2023-Present "Shinshi Developers Team"
+# Copyright (c) 2023-Present Shinshi Developers Team
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -24,10 +24,10 @@ from crescent.commands.groups import Group
 from crescent.context.context import Context
 from crescent.events import event as event_decorator
 from crescent.plugin import Plugin
-from hikari.permissions import Permissions
 from hikari.components import ButtonStyle
 from hikari.events.shard_events import ShardReadyEvent
 from hikari.guilds import Guild, Member
+from hikari.permissions import Permissions
 from miru.button import Button
 from miru.events import ComponentInteractionCreateEvent
 from miru.view import View

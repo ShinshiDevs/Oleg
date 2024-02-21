@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2023-Present "Shinshi Developers Team"
+# Copyright (c) 2023-Present Shinshi Developers Team
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,6 @@ from typing import cast
 from crescent.commands.decorators import command
 from crescent.context.context import Context
 from crescent.plugin import Plugin
-from miru import View, Button
 
 from oleg import __version__
 from oleg.framework.bot import Bot
@@ -46,10 +45,8 @@ async def about(context: Context) -> None:
                 f"- Latency **{round(bot.heartbeat_latency * 1000, 1)}ms**",
                 f"- Current version [`{bot.version}`]"
                 f"(<https://github.com/ShinshiDevs/Oleg/blob/main/CHANGELOG.md#version-{__version__[0]}{__version__[1]}{__version__[2]}>)",
-                "I'm an open-source project of \"Shinshi Developers Team\", licensed under MIT. I'll be glad to help you!",
+                "I'm an open-source project of [Shinshi Developers Team](<https://github.com/ShinshiDevs/Oleg>), "
+                "licensed under MIT. I'll be glad to help you!",
             ]
-        ),
-        components=View().add_item(
-            Button(label="Github", url="https://github.com/ShinshiDevs/Oleg")
         ),
     )

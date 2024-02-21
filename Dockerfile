@@ -19,15 +19,20 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-FROM --platform=linux/amd64 ghcr.io/owl-corp/python-poetry-base:3.12
-LABEL NAME=Oleg
-LABEL VERSION=0.1.2
-LABEL LICENSE=MIT
-
-COPY pyproject.toml poetry.lock ./
-RUN poetry install
-
-COPY ./src .
-
-ENTRYPOINT ["poetry"]
-CMD ["run", "python", "-OO", "-m", "oleg"]
+# Specify the required Python version.
+ARG PYTHON_IMAGE=python:3.12-alpine
+FROM ${PYTHON_IMAGE}
+# Required dependencies for compiling project's packages
+RUN apk --no-cache add gcc libffi-dev musl-dev
+# Create the working directory.
+WORKDIR /usr/Oleg/
+# Project files copy
+COPY . .
+# Install the project's dependencies.
+RUN pip install --no-cache-dir --quiet -U poetry && \
+    poetry config virtualenvs.in-project true && \
+    poetry install --quiet --no-interaction --no-root --no-dev
+# Start
+STOPSIGNAL SIGINT
+ENV OLEG_PYTHON_EXECUTABLE=python3.12
+ENTRYPOINT ["/bin/sh", "-c", "poetry run ${OLEG_PYTHON_EXECUTABLE} -OOm oleg"]

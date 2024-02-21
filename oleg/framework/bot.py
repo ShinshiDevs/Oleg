@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2023-Present "Shinshi Developers Team"
+# Copyright (c) 2023-Present Shinshi Developers Team
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@ class Bot(GatewayBot):
         self.__cache = Cache(self)
         self.__config = config
         super().__init__(
-            token=environ.get("OLEG_DISCORD_TOKEN") or exit(403),
+            token=environ.get("OLEG_DISCORD_TOKEN"),
             executor=executor,
             cache_settings=self.cache.settings,
             dumps=dumps,

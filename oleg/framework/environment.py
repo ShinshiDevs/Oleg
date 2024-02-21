@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2023-Present "Shinshi Developers Team"
+# Copyright (c) 2023-Present Shinshi Developers Team
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,14 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+import os
+from typing import Sequence
+
+
+class Environment:
+    __slots__: Sequence[str] = ()
+    _ROOT_PATH = os.getcwd()
+
+    @property
+    def root_path(self) -> str:
+        return self._ROOT_PATH

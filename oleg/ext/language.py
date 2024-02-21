@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2023-Present "Shinshi Developers Team"
+# Copyright (c) 2023-Present Shinshi Developers Team
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -21,38 +21,24 @@
 # SOFTWARE.
 from typing import Any
 
-from hikari.channels import PermissibleGuildChannel
-from hikari.guilds import Member, Guild
+from hikari.guilds import Member, Role, Guild
 
 from oleg.framework.bot import Bot
 
 
-class Welcomer:
+class Language:
     __cache: dict[str, dict[str, Any]] = {}
 
     def __init__(self, bot: Bot, guild: Guild) -> None:
-        self.bot = bot
-        channels: dict[str, PermissibleGuildChannel] = {
-            "RU": guild.get_channel(bot.config["welcomer"]["channels"]["russian"]),
-            "EN": guild.get_channel(bot.config["welcomer"]["channels"]["english"]),
+        roles: dict[str, Role] = {
+            "RU": guild.get_role(bot.config["roles"]["languages"]["russian"]),
+            "EN": guild.get_role(bot.config["roles"]["languages"]["english"]),
         }
-        messages: dict = {
-            "RU": bot.config["welcomer"]["messages"]["russian"],
-            "EN": bot.config["welcomer"]["messages"]["english"],
-        }
-        self.__cache.update(channels=channels, messages=messages)
+        self.__cache.update(roles=roles)
 
     @classmethod
-    async def welcome(cls, bot: Bot, member: Member, language: str) -> None:
+    async def set(cls, member: Member, language: str) -> None:
         language: str = language.upper()
-        channels: dict = cls.__cache["channels"]
-        messages: dict = cls.__cache["messages"]
-        if channels.get(language) is None or messages.get(language) is None:
+        if cls.__cache["roles"].get(language) is None:
             raise ValueError(f"Language '{language}' is None")
-        await channels.get(language).send(
-            content=messages.get(language).format(
-                emoji=bot.cache.get_emoji(bot.config["emojis"]["join"]),
-                member=member.mention,
-            ),
-            user_mentions=True,
-        )
+        await member.add_role(cls.__cache["roles"][language])

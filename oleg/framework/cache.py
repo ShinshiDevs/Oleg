@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2023-Present "Shinshi Developers Team"
+# Copyright (c) 2023-Present Shinshi Developers Team
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -28,14 +28,12 @@ from hikari.impl.cache import CacheImpl
 from hikari.impl.config import CacheComponents, CacheSettings
 from hikari.impl.gateway_bot import GatewayBot
 
-from oleg._caching import (
-    message_cache_size,
-    dm_channel_cache_size,
-    member_cache_size,
-)
-
 if TYPE_CHECKING:
     from logging import Logger
+
+MESSAGE_CACHE_SIZE: int = 1_000
+DM_CHANNEL_CACHE_SIZE: int = 0
+MEMBER_CACHE_SIZE: int = 1_000
 
 
 class Cache(CacheImpl):
@@ -49,12 +47,12 @@ class Cache(CacheImpl):
                 | CacheComponents.ROLES
                 | CacheComponents.EMOJIS
             ),
-            max_messages=message_cache_size,
-            max_dm_channel_ids=dm_channel_cache_size,
+            max_messages=MESSAGE_CACHE_SIZE,
+            max_dm_channel_ids=DM_CHANNEL_CACHE_SIZE,
         )
         super().__init__(app, settings=settings)
         self.__members: LFUCache[tuple[int, int], Member | None] = LFUCache(
-            member_cache_size
+            MEMBER_CACHE_SIZE
         )
         self.__app: GatewayBot = cast(GatewayBot, app)
         self.__logger: Logger = getLogger("cache")

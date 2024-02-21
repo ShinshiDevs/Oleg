@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2023-Present "Shinshi Developers Team"
+# Copyright (c) 2023-Present Shinshi Developers Team
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,19 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+from pathlib import Path
+from typing import Sequence, Any
+
+from orjson import loads
+
+
+class Data:
+    __slots__: Sequence[str] = ("__file",)
+
+    def __init__(self, *path_to_data: Path | str) -> None:
+        with open(Path(*path_to_data), "rb") as stream:
+            self.__file = loads(stream.read())
+
+    @property
+    def file(self) -> dict[str, Any]:
+        return self.__file

@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2023-Present "Shinshi Developers Team"
+# Copyright (c) 2023-Present Shinshi Developers Team
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -19,6 +19,13 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-message_cache_size: int = 1_000
-dm_channel_cache_size: int = 0
-member_cache_size: int = 1_000
+from typing import Sequence
+
+__all__: Sequence[str] = (
+    "__version__",
+    "__copyright__",
+    "__license__",
+)
+__version__: tuple[int, int, int, str | None] = 0, 1, 3, None
+__copyright__: str = 'Copyright (c) 2023-Present Shinshi Developers Team'
+__license__: str = "MIT License"
