@@ -35,7 +35,7 @@ class Welcomer:
         channels: dict[str, PermissibleGuildChannel] = {
             "RU": guild.get_channel(bot.config["welcomer"]["channels"]["russian"]),
             "EN": guild.get_channel(bot.config["welcomer"]["channels"]["english"]),
-        }
+        }  # TODO: Typing
         messages: dict = {
             "RU": bot.config["welcomer"]["messages"]["russian"],
             "EN": bot.config["welcomer"]["messages"]["english"],

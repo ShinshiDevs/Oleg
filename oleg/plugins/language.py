@@ -36,6 +36,7 @@ from oleg.ext.language import Language
 from oleg.ext.welcomer import Welcomer
 from oleg.framework.bot import Bot
 
+# TODO: Rewrite?
 plugin = Plugin[Bot, None]()
 group = Group("init", default_member_permissions=Permissions.ADMINISTRATOR)
 
