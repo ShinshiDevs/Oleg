@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center"><img src="assets//logo.png" width="30"> Oleg</h1>
+  <h1 align="center"><img src="assets/logo.png" width="30"> Oleg</h1>
   <p align="center">Service bot for <a href="https://dsc.gg/shinshi">Shinshi Hub</a>, a support server. A bit similar to Shinshi, but much weaker in structure and content, but also serves as a good template for your future bot.<p>
   <p align="center">
     <a href="https://github.com/ShinshiDevs/Oleg/blob/main/LICENSE">
