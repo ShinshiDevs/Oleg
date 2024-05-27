@@ -1,0 +1,17 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+version = "0"
+name = "oleg"
+authors = ["stefanlight8 <64615032+stefanlight8@users.noreply.github.com>"]
+description = "A service bot for the Shinshi Hub"
+readme = "README.md"
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.13"
+
+aurum-hikari = ">=0.1.5.4"
+hikari = {version = "^2.0.0.dev125", extras = ["speedups"]}
